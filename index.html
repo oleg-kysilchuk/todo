@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My 'To Do' App</title>
+<script defer src="bundle.js"></script><link href="main.css" rel="stylesheet"></head>
+<body>
+    
+    <div class="wrapper">
+        
+        <header class="header">
+            <div class="header__logo">
+                <h1 class="header__title">To Do</h1>
+                <img src="assets/clipboard.svg" alt="logo">
+            </div>
+
+            <div class="header__datetime">
+                <div class="header__date"></div>
+                <div class="header__time"></div>
+            </div>
+        </header>
+
+        <aside class="sidebar">
+            <div class="sidebar__add-new">
+                <button class="sidebar__open-btn" type="button">Add New <b>+</b></button>
+                <form id="new-task-form" class="sidebar__new-task-form">
+                    <textarea class="sidebar__add-text" type="text" maxlength="50" placeholder="New task..." required></textarea>
+                    <button class="sidebar__add-btn add-btn" type="submit" form="new-task-form">OK</button>
+                </form>    
+            </div>
+
+            <h2 class="sidebar__list-title">Current tasks</h2>
+            <ol class="sidebar__list"></ol>
+        </aside>
+
+        <main class="board"></main>
+
+        <footer class="footer"></footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,368 @@
+@import '~normalize.css';
+@import './fontface.scss';
+@import './responsive';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff5ba;
+    font-family: 'Nanum Pen Script', cursive;
+    color: #141414;
+    overflow: hidden;
+}
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 20vw 80vw;
+    grid-template-rows: 10vh 83vh 7vh;
+    gap: 0px 0px;
+    grid-template-areas:
+    "header header"
+    "sidebar board"
+    "footer footer";
+
+    @include mobile-s {
+        grid-template-columns: 40vw 60vw;
+        grid-template-rows: 15vh 78vh 7vh;
+    }
+
+    @include tablet {
+        grid-template-columns: 30vw 70vw;
+    }
+}
+
+
+.header {
+    grid-area: header;
+    background-color: #bffcc6;
+    box-shadow: 0px 0px 5px #cfd3cf;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.3vh 2vw;
+    z-index: 2;
+
+    &__logo {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-size: 5vh;
+        margin: 0;
+        line-height: 1.3;
+
+        @include mobile-s {
+            font-size: 4vh;
+            line-height: 2.5;
+            padding-top: 3%;
+        }
+    }
+
+    img {
+        margin: 0 auto 8px 10px;
+
+        @include mobile-s {
+            width: 30%;
+        }
+    }
+
+    &__datetime {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-transform: capitalize;
+        font-size: 5.5vh;
+
+        @include mobile-s {
+            justify-content: space-around;
+            width: 60%;
+            padding-top: 4vh;
+            font-size: 4vh;
+        }
+        
+        @include iphoneX {
+            font-size: 3.2vh;
+        }
+    }
+
+    &__date {
+        margin-right: 1.5vw;
+    }
+}
+
+
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #ffcc96;
+    height: 83vh;
+    padding: 2px;
+    box-shadow: 0px 0px 5px #cfd3cf;
+
+    &__add-new {
+        height: auto;
+        max-height: 39vh;
+        margin-bottom: 1vh;
+    }
+
+    &__open-btn {
+        display: block;
+        width: 100%;
+        outline: none;
+        border: none;
+        background-color: #ffcc96;
+        cursor: pointer;
+        text-align: center;
+        font-size: 5vh;
+        padding: 2vh 1vw;
+        border: 2px solid grey;
+        margin-bottom: 2px;
+
+        &:hover {
+            background-color: #fff5ba;
+            color: #e9a863;
+        }
+
+        &:active {
+            transform: scale(0.98, 0.97);
+        }
+    }
+
+    &__new-task-form {
+        width: 100%;
+        display: none;
+    }
+
+    .open-inp {
+        display: block;
+    }
+
+    &__add-text {
+        height: 18vh;
+        width: 100%;
+        resize: none;
+        font-size: 3vh;
+        padding: 0.5vh 0.5vw;
+        outline: none;
+        border: 1px solid grey;
+        overflow: hidden;
+        color: grey;
+    }
+
+    &__add-btn {
+        display: block;
+        width: 100%;
+        outline: none;
+        border: 2px solid grey;
+        background-color: rgb(228, 215, 215);
+
+        &:hover {
+            background-color: rgb(238, 230, 230);
+        }
+
+        &:active {
+            transform: scale(0.99, 0.97);
+        }
+    }
+
+
+    &__list-title {
+        width: 100%;
+        font-size: 4vh;
+        font-weight: 500;
+        text-align: center;
+        border-bottom: 2px dashed gray;
+        border-top: 2px dashed grey;
+        padding: 1.5vh 1.5vw;
+    }
+
+    &__list {
+        height: 41vh;
+        width: 100%;
+        overflow-y: scroll;
+        flex-grow: 1;
+
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+          
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+          
+        &::-webkit-scrollbar-thumb {
+            background: rgb(218, 209, 209);
+        }
+          
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgb(206, 197, 197);
+        }
+        
+    }
+
+    &__list-item {
+        padding: 3% 8% 0;
+        margin-bottom: 1%;
+        font-size: 2.5vh;
+        font-weight: 400;
+        line-height: 1.5;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        
+        @include mobile-s {
+            font-size: 2.3vh;
+        }
+    }
+
+    .isDone {
+        text-decoration: line-through;
+    }
+}
+
+
+.board {
+    grid-area: board;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 3% 6%;
+    height: 83vh;
+    overflow-y: scroll;
+
+    @include mobile-s {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        padding: 3vh 0;
+    }
+
+    @include tablet {
+        justify-content: space-around;
+        padding: 10% 0;
+    }
+
+
+    .task {
+        width: 11vw;
+        height: 25vh;
+        box-shadow: 0px 0px 10px 2px #cfd3cf;
+        background-color: #ffffb5;
+        margin: 2%;
+
+        @include mobile-s {
+            width: 90%;
+            min-height: 37%;
+            margin: 0 auto 4vh;
+        }
+
+        @include mobile {
+            width: 80%;
+            min-width: 35%;
+        }
+
+        @include tablet {
+            width: 28vw;
+            margin: 0;
+        }
+    }
+
+    .task-check {
+        margin: 3% auto 0 5%;
+        outline: none;
+
+        @include mobile-s {
+            margin-top: 4%;
+        }
+    }
+
+    .task-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: 3% 1%;
+    }
+
+    .task-btn {
+        border: none;
+        outline: none;
+        border-radius: 20%;
+        width: 20px;
+        height: 20px;
+        margin: 0 3px;
+        background-color: transparent;
+
+        &:hover {
+            box-shadow: 0px 0px 5px 0px grey;
+        }
+
+        &:active {
+            box-shadow: 0px 0px 5px 0px grey;
+            transform: scale(0.96, 0.98);
+        }
+
+        @include mobile-s {
+            width: 25px;
+            height: 25px;
+            margin: 0 5px;
+        }
+    }
+
+    .task-edit {
+        transform: rotate(90deg);
+
+        &:active {
+            transform: rotate(90deg) scale(0.96, 0.98);
+        }
+    }
+
+    .task-text {
+        padding: 10% 3.5%;
+        font-size: 2.5vh;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+}
+
+.edit-form {
+    width: 90%;
+    height: 55%;
+    margin: 5% auto;
+}
+
+.edit-input {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+    display: block;
+    height: 70%;
+    background: transparent;
+    font-size: 2.5vh;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.edit-form-btn {
+    width: 100%;
+    outline: none;
+}
+
+
+.footer {
+    grid-area: footer;
+    background-color: #bffcc6;
+    height: 7vh;
+    width: 100%;
+    box-shadow: 0px 0px 5px #cfd3cf;
+    z-index: 2;
+}
